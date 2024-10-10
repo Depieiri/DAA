@@ -1,1 +1,81 @@
+create table mhs
+( 
+    nim char(5),
+    nama varchar(10),
+    prodi varchar(10)
+);
+
+insert into mhs values('001','A','INF');
+insert into mhs values('002','B','SI');
+insert into mhs values('003','C','TSP');
+insert into mhs values('004','D','ARS');
+insert into mhs values('005','E','SI');
+insert into mhs values('006','F','INF');
+insert into mhs values('007','G','INF');
+
+
+select prodi, count(*) jml_mhs
+from mhs
+group by prodi;
+
+lanjutan Ebook
+HAL 30-36
+
+CREATE TYPE gender_enum AS ENUM ('Male', 'Female', 'Other');
+
+-- Membuat tabel dengan berbagai macam Data Types
+CREATE TABLE user_info (
+    id SERIAL PRIMARY KEY,                 
+    full_name VARCHAR(255) NOT NULL,       
+    birth_date DATE,                       
+    email VARCHAR(100) NOT NULL,
+    phone_number CHAR(10),              
+    is_active BOOLEAN DEFAULT TRUE,       
+    registration_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Waktu pendaftaran, default saat ini
+    account_balance DECIMAL(10, 2) DEFAULT 0.00, -- Saldo akun, default 0.00
+    profile_picture BYTEA,                 
+    gender gender_enum                     
+);
+
+
+INSERT INTO user_info (full_name, birth_date, email, phone_number, gender)
+VALUES 
+    ('Daffa Maruf', '2000-04-15', 'daffa.maruf@example.com', '0812345678', 'Male');
+
+
+SELECT * FROM user_info;
+
+HAL 70-80
+
+CREATE TABLE students (
+    student_id SERIAL PRIMARY KEY,          -- ID auto-increment
+    full_name VARCHAR(100) NOT NULL,        -- Nama lengkap
+    email VARCHAR(100) UNIQUE NOT NULL,     -- Email (unik dan wajib diisi)
+    birth_date DATE,                        -- Tanggal lahir
+    phone_number CHAR(10),                  -- Nomor telepon (panjang tetap)
+    major VARCHAR(50),                      -- Jurusan
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Waktu pendaftaran
+);
+
+-- Menambahkan data ke tabel students
+INSERT INTO students (full_name, email, birth_date, phone_number, major)
+VALUES
+    ('Daffa Maruf', 'daffa.maruf@example.com', '2000-04-15', '0812345678', 'Computer Science'),
+    ('Alya Putri', 'alya.putri@example.com', '1999-06-21', '0812345679', 'Information Technology'),
+    ('Rizky Fahri', 'rizky.fahri@example.com', '2001-08-10', '0812345680', 'Business Administration');
+
+
+SELECT * FROM students;
+
+
+UPDATE students
+SET major = 'Software Engineering'
+WHERE full_name = 'Daffa Maruf';
+
+
+DELETE FROM students
+WHERE full_name = 'Rizky Fahri';
+
+
+SELECT * FROM students;
 
